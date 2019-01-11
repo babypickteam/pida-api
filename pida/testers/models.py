@@ -25,10 +25,6 @@ class TesterOrder(models.Model):
                                               default=STATUS_CHOICES[0][0])
 
     def is_valid(self):
-        if self.status not in [c[0] for c in self.STATUS_CHOICES]:
-            return False
-        if self.products.count() != 3:
-            return False
-        if any(p.category!=self.category for p in self.products.all()):
-            return False
-        return True
+        return self.status in [c[0] for c in self.STATUS_CHOICES] \
+               and self.products.count() == 3 \
+               and all(p.category==self.category for p in self.products.all())
