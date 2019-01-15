@@ -1,6 +1,6 @@
 from django.db import models
+from django.conf import settings
 
-from django.contrib.auth.models import User
 from products.models import Product, Category
 
 
@@ -11,7 +11,7 @@ class TesterOrder(models.Model):
         (3, 'Delivered'),
     )
 
-    owner = models.ForeignKey(User,
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
                               related_name='tester_orders')
     category = models.ForeignKey(Category,

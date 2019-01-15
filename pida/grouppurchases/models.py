@@ -1,6 +1,6 @@
 from django.db import models
+from django.conf import settings
 
-from django.contrib.auth.models import User
 from products.models import Product
 
 
@@ -12,7 +12,7 @@ class GroupPurchaseOrder(models.Model):
         (3, 'Delivered'),
     )
 
-    owner = models.ForeignKey(User,
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
                               related_name='group_purchase_orders')
     event = models.ManyToManyField('GroupPurchaseEvent',
