@@ -20,7 +20,6 @@ class Product(models.Model):
 
 class Company(models.Model):
     name = models.TextField(max_length=40)
-    managers = models.ManyToManyField(User)
 
 
 class Category(models.Model):
