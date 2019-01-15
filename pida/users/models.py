@@ -23,8 +23,8 @@ class User(AbstractUser):
 
     gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES)
     age = models.PositiveSmallIntegerField(choices=AGE_CHOICES)
-    skinType = models.PositiveSmallIntegerField(choices=SKIN_TYPE_CHOICES)
-    skinConcerns = models.ManyToManyField('SkinConcern',
+    skin_type = models.PositiveSmallIntegerField(choices=SKIN_TYPE_CHOICES)
+    skin_concerns = models.ManyToManyField('SkinConcern',
                                           related_name='+')
     allergies = models.ManyToManyField('Allergy',
                                        related_name='+')
