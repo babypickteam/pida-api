@@ -15,8 +15,9 @@ class GroupPurchaseOrder(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
                               related_name='group_purchase_orders')
-    event = models.ManyToManyField('GroupPurchaseEvent',
-                                    related_name='orders')
+    event = models.ForeignKey('GroupPurchaseEvent',
+                              on_delete=models.PROTECT,
+                              related_name='orders')
     quantity = models.PositiveSmallIntegerField()
     order_time = models.DateTimeField(auto_now_add=True)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
