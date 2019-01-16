@@ -15,8 +15,6 @@ class PurchaseOrder(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
                               related_name='purchase_orders')
-    items = models.ManyToManyField('PurchaseItem',
-                                   related_name='+')
     order_time = models.DateTimeField(auto_now_add=True)
     price = models.PositiveIntegerField()
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
@@ -31,6 +29,9 @@ class PurchaseOrder(models.Model):
 
 
 class PurchaseItem(models.Model):
+    order = models.ForeignKey('PurchaseOrder',
+                              on_delete=models.CASCADE,
+                              related_name='items')
     product = models.ForeignKey(Product,
                                 on_delete=models.PROTECT,
                                 related_name='+')
