@@ -24,7 +24,6 @@ class PurchaseOrder(models.Model):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
                and self.items.count() > 0 \
                and self.price == sum(i.product.price*i.number for i in self.items.all()) \
-               and self.items.all().count() == len(set([i.product for i in self.items.all()])) \
                and all(i.number>0 for i in self.items.all())
 
 
@@ -36,3 +35,6 @@ class PurchaseItem(models.Model):
                                 on_delete=models.PROTECT,
                                 related_name='+')
     number = models.PositiveSmallIntegerField()
+
+    class Meta:
+        unique_together = (('order', 'product'),)
