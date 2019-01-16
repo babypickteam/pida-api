@@ -17,5 +17,5 @@ class PurchaseItemSerializer(serializers.ModelSerializer):
         model = PurchaseItem
         fields = (
             'id',
-            'product', 'number',
+            'order', 'product', 'number',
         )
