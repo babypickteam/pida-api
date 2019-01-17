@@ -10,3 +10,6 @@ class TesterOrderSerializer(serializers.ModelSerializer):
             'category', 'products', 'order_time', \
               'price', 'status',
         )
+        read_only_fields = (
+            'price',
+        )
