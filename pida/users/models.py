@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.contrib.auth.models import AbstractUser
 
 
@@ -25,7 +26,7 @@ class User(AbstractUser):
     age = models.PositiveSmallIntegerField(choices=AGE_CHOICES)
     skin_type = models.PositiveSmallIntegerField(choices=SKIN_TYPE_CHOICES)
     skin_concerns = models.ManyToManyField('SkinConcern',
-                                          related_name='+')
+                                           related_name='+')
     allergies = models.ManyToManyField('Allergy',
                                        related_name='+')
     default_payment_information = models.OneToOneField('PaymentInformation',
@@ -64,4 +65,3 @@ class DeliveryInformation(models.Model):
     postal_code = models.TextField(max_length=5)
     address_line_road = models.TextField(max_length=40)
     address_line_detail = models.TextField(max_length=40)
-
