@@ -23,9 +23,6 @@ class GroupPurchaseOrder(models.Model):
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=STATUS_CHOICES[0][0])
 
-    class Meta:
-        unique_together = (('owner', 'event'),)
-
     def is_valid(self):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
                and self.quantity > 0
