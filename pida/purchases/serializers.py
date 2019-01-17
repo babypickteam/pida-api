@@ -22,7 +22,8 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
               'status',
         )
         read_only_fields = (
-            'price',
+            'order_time', 'price', \
+              'status',
         )
 
     def create(self, validated_data):

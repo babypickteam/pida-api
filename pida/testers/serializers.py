@@ -11,7 +11,8 @@ class TesterOrderSerializer(serializers.ModelSerializer):
               'price', 'status',
         )
         read_only_fields = (
-            'price',
+            'order_time', \
+            'price', 'status',
         )
 
     def save(self, **kwargs):
