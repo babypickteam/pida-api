@@ -28,6 +28,12 @@ class User(AbstractUser):
                                           related_name='+')
     allergies = models.ManyToManyField('Allergy',
                                        related_name='+')
+    default_payment_information = models.OneToOneField('PaymentInformation',
+                                                       on_delete=models.PROTECT,
+                                                       related_name='+')
+    default_delivery_information = models.OneToOneField('DeliveryInformation',
+                                                        on_delete=models.PROTECT,
+                                                        related_name='+')
 
 
 class SkinConcern(models.Model):
