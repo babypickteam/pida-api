@@ -11,6 +11,11 @@ class GroupPurchaseOrderSerializer(serializers.ModelSerializer):
               'status',
         )
 
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        if not instance.is_valid():
+            raise serializers.ValidationError()
+
 
 class _GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):
     class Meta:

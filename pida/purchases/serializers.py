@@ -31,3 +31,8 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
         for d in items_data:
             PurchaseItem.objects.create(order=instance, **d)
         return instance
+
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        if not instance.is_valid():
+            raise serializers.ValidationError()
