@@ -11,8 +11,16 @@ class GroupPurchaseOrderSerializer(serializers.ModelSerializer):
             'status',
         )
 
+class _GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GroupPurchaseDiscountRate
+        fields = (
+            'quantity', 'rate',
+        )
 
 class GroupPurchaseEventSerializer(serializers.ModelSerializer):
+    discount_rates = _GroupPurchaseDiscountRateSerializer(many=True, read_only=True)
+
     class Meta:
         model = GroupPurchaseEvent
         fields = (
@@ -21,10 +29,3 @@ class GroupPurchaseEventSerializer(serializers.ModelSerializer):
         )
 
 
-class GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GroupPurchaseDiscountRate
-        fields = (
-            'id',
-            'event', 'quantity', 'rate',
-        )
