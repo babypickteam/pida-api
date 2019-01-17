@@ -2,6 +2,7 @@ from django.db import models
 
 from django.conf import settings
 
+from users.models import PaymentInformation, DeliveryInformation
 from products.models import Product
 
 
@@ -19,6 +20,12 @@ class PurchaseOrder(models.Model):
     price = models.PositiveIntegerField()
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=STATUS_CHOICES[0][0])
+    payment_information = models.ForeignKey(PaymentInformation,
+                                            on_delete=models.PROTECT,
+                                            related_name='+')
+    delivery_information = models.ForeignKey(DeliveryInformation,
+                                             on_delete=models.PROTECT,
+                                             related_name='+')
 
     def is_valid(self):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
