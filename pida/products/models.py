@@ -22,10 +22,7 @@ class Company(models.Model):
 
 class Category(models.Model):
     name = models.TextField(max_length=20)
-    big_category = models.ForeignKey('BigCategory',
-                                     on_delete=models.PROTECT,
-                                     related_name='subcategories')
+    big_name = models.TextField(max_length=20)
 
-
-class BigCategory(models.Model):
-    name = models.TextField(max_length=20)
+    class Meta:
+        unique_together = (('name', 'big_name'),)
