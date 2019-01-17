@@ -7,9 +7,10 @@ class GroupPurchaseOrderSerializer(serializers.ModelSerializer):
         model = GroupPurchaseOrder
         fields = (
             'id',
-            'owner', 'event', 'quantity', 'order_time',
-            'status',
+            'owner', 'event', 'quantity', 'order_time', \
+              'status',
         )
+
 
 class _GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,6 +19,7 @@ class _GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):
             'quantity', 'rate',
         )
 
+
 class GroupPurchaseEventSerializer(serializers.ModelSerializer):
     discount_rates = _GroupPurchaseDiscountRateSerializer(many=True, read_only=True)
 
@@ -25,7 +27,6 @@ class GroupPurchaseEventSerializer(serializers.ModelSerializer):
         model = GroupPurchaseEvent
         fields = (
             'id',
-            'product', 'closing_time', 'orders', 'discount_rates',
+            'orders', 'discount_rates',
+            'product', 'closing_time',
         )
-
-

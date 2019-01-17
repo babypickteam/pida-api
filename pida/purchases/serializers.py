@@ -1,12 +1,14 @@
 from rest_framework import serializers
 from .models import PurchaseOrder, PurchaseItem
 
+
 class _PurchaseItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchaseItem
         fields = (
             'product', 'quantity',
         )
+
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
     items = _PurchaseItemSerializer(many=True, read_only=False)
@@ -15,8 +17,9 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
         model = PurchaseOrder
         fields = (
             'id',
-            'owner', 'items', 'order_time', 'price',
-            'status',
+            'items',
+            'owner', 'order_time', 'price', \
+              'status',
         )
 
     def create(self, validated_data):
@@ -25,4 +28,3 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
         for d in items_data:
             PurchaseItem.objects.create(order=instance, **d)
         return instance
-

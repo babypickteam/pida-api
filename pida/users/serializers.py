@@ -7,8 +7,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id',
-            'gender', 'age', 'skin_type', 'skin_concerns',
-            'allergies',
+            'gender', 'age', 'skin_type', 'skin_concerns', \
+              'allergies',
         )
 
 
@@ -35,8 +35,8 @@ class PaymentInformationSerializer(serializers.ModelSerializer):
         model = PaymentInformation
         fields = (
             'id',
-            'owner', 'issuer', 'card_number', 'expiration_date',
-            'cvc', 'password_hashed',
+            'owner', 'issuer', 'card_number', 'expiration_date', \
+              'cvc', 'password_hashed',
         )
         read_only_fields = (
             'owner',
@@ -48,8 +48,8 @@ class DeliveryInformationSerializer(serializers.ModelSerializer):
         model = DeliveryInformation
         fields = (
             'id',
-            'owner', 'name', 'contact', 'postal_code',
-            'address_line_road', 'address_line_detail',
+            'owner', 'name', 'contact', 'postal_code', \
+              'address_line_road', 'address_line_detail',
         )
         read_only_fields = (
             'owner',
