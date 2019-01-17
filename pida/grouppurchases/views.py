@@ -13,7 +13,15 @@ class GroupPurchaseOrderList(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         user = self.request.user
-        serializer.save(owner=user)
+        payment_information = user.default_payment_information
+        payment_information.pk = None
+        payment_information.save()
+        delivery_information = user.default_delivery_information
+        delivery_information.pk = None
+        delivery_information.save()
+        serializer.save(owner=user,
+                        payment_information=payment_information,
+                        delivery_information=delivery_information)
 
 
 class GroupPurchaseOrderDetail(generics.RetrieveAPIView):
