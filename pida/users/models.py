@@ -36,3 +36,26 @@ class SkinConcern(models.Model):
 
 class Allergy(models.Model):
     name = models.TextField(max_length=20)
+
+
+class PaymentInformation(models.Model):
+    owner = models.ForeignKey('User',
+                              on_delete=models.CASCADE,
+                              related_name='+')
+    issuer = models.TextField(max_length=20)
+    card_number = models.TextField(max_length=19)
+    expiration_date = models.TextField(max_length=5)
+    cvc = models.TextField(max_length=3)
+    password_hashed = models.CharField(max_length=255)
+
+
+class DeliveryInformation(models.Model):
+    owner = models.ForeignKey('User',
+                              on_delete=models.CASCADE,
+                              related_name='+')
+    name = models.TextField(max_length=20)
+    contact = models.TextField(max_length=15)
+    postal_code = models.TextField(max_length=5)
+    address_line_road = models.TextField(max_length=40)
+    address_line_detail = models.TextField(max_length=40)
+
