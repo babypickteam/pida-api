@@ -11,6 +11,10 @@ class GroupPurchaseOrderList(generics.CreateAPIView):
     serializer_class = GroupPurchaseOrderSerializer
     permission_classes = (IsAuthenticatedOwnerOrReadOnly,)
 
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(owner=user)
+
 
 class GroupPurchaseOrderDetail(generics.RetrieveAPIView):
     queryset = GroupPurchaseOrder.objects.all()

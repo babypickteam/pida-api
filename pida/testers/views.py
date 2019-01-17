@@ -11,6 +11,10 @@ class TesterOrderList(generics.CreateAPIView):
     serializer_class = TesterOrderSerializer
     permission_classes = (IsAuthenticatedOwner,)
 
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(owner=user)
+
 
 class TesterOrderDetail(generics.RetrieveAPIView):
     queryset = TesterOrder.objects.all()
