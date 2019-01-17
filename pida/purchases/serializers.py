@@ -18,7 +18,7 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'items',
-            'owner', 'order_time', 'price', \
+            'order_time', 'price', \
               'status',
         )
 
