@@ -17,8 +17,9 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
         model = PurchaseOrder
         fields = (
             'id',
-            'owner', 'items', 'order_time', 'price',
-            'status',
+            'items',
+            'owner', 'order_time', 'price', \
+              'status',
         )
 
     def create(self, validated_data):

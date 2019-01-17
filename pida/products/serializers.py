@@ -7,8 +7,8 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = (
             'id',
-            'name', 'price', 'company', 'category',
-            'info_seller', 'info_manufacturer', 'info_country', 'info_url',
+            'name', 'price', 'company', 'category', \
+              'info_seller', 'info_manufacturer', 'info_country', 'info_url',
         )
 
 
@@ -17,7 +17,8 @@ class CompanySerializer(serializers.ModelSerializer):
         model = Company
         fields = (
             'id',
-            'name', 'products',
+            'products',
+            'name',
         )
 
 
@@ -26,5 +27,6 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = (
             'id',
-            'name', 'big_name', 'products'
+            'products',
+            'name', 'big_name',
         )

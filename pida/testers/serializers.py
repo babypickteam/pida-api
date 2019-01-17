@@ -7,6 +7,6 @@ class TesterOrderSerializer(serializers.ModelSerializer):
         model = TesterOrder
         fields = (
             'id',
-            'owner', 'category', 'products', 'order_time',
-            'price', 'status',
+            'owner', 'category', 'products', 'order_time', \
+              'price', 'status',
         )

@@ -7,8 +7,8 @@ class GroupPurchaseOrderSerializer(serializers.ModelSerializer):
         model = GroupPurchaseOrder
         fields = (
             'id',
-            'owner', 'event', 'quantity', 'order_time',
-            'status',
+            'owner', 'event', 'quantity', 'order_time', \
+              'status',
         )
 
 
@@ -27,5 +27,6 @@ class GroupPurchaseEventSerializer(serializers.ModelSerializer):
         model = GroupPurchaseEvent
         fields = (
             'id',
-            'product', 'closing_time', 'orders', 'discount_rates',
+            'orders', 'discount_rates',
+            'product', 'closing_time',
         )
