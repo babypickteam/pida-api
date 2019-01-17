@@ -20,6 +20,11 @@ class CompanyDetail(generics.RetrieveAPIView):
     serializer_class = CompanySerializer
 
 
+class CategoryList(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
 class CategoryDetail(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
