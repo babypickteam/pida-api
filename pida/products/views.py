@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
 
-from .models import Product, Company, Category, BigCategory
-from .serializers import ProductSerializer, CompanySerializer, CategorySerializer, BigCategorySerializer
+from .models import Product, Company, Category
+from .serializers import ProductSerializer, CompanySerializer, CategorySerializer
 
 
 class ProductList(generics.ListAPIView):
@@ -23,8 +23,3 @@ class CompanyDetail(generics.RetrieveAPIView):
 class CategoryDetail(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-
-
-class BigCategoryDetail(generics.RetrieveAPIView):
-    queryset = BigCategory.objects.all()
-    serializer_class = BigCategorySerializer

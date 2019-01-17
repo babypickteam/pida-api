@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Company, Category, BigCategory
+from .models import Product, Company, Category
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -26,14 +26,5 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = (
             'id',
-            'name', 'big_category', 'products'
-        )
-
-
-class BigCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = BigCategory
-        fields = (
-            'id',
-            'name', 'subcategories',
+            'name', 'big_name', 'products'
         )

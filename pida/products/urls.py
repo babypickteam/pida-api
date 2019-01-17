@@ -16,9 +16,6 @@ urlpatterns = [
     path('categories/<int:pk>/',
          views.CategoryDetail.as_view(),
          name='category-detail'),
-    path('big-categories/<int:pk>/',
-         views.BigCategoryDetail.as_view(),
-         name='big-category-detail'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
