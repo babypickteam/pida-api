@@ -23,8 +23,8 @@ class PurchaseOrder(models.Model):
     def is_valid(self):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
                and self.items.count() > 0 \
-               and self.price == sum(i.product.price*i.number for i in self.items.all()) \
-               and all(i.number>0 for i in self.items.all())
+               and self.price == sum(i.product.price*i.quantity for i in self.items.all()) \
+               and all(i.quantity>0 for i in self.items.all())
 
 
 class PurchaseItem(models.Model):
@@ -34,7 +34,7 @@ class PurchaseItem(models.Model):
     product = models.ForeignKey(Product,
                                 on_delete=models.PROTECT,
                                 related_name='+')
-    number = models.PositiveSmallIntegerField()
+    quantity = models.PositiveSmallIntegerField()
 
     class Meta:
         unique_together = (('order', 'product'),)

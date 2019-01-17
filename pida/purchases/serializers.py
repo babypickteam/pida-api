@@ -5,7 +5,7 @@ class _PurchaseItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchaseItem
         fields = (
-            'product', 'number',
+            'product', 'quantity',
         )
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
