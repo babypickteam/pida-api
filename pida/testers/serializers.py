@@ -10,3 +10,12 @@ class TesterOrderSerializer(serializers.ModelSerializer):
             'category', 'products', 'order_time', \
               'price', 'status',
         )
+        read_only_fields = (
+            'order_time', \
+            'price', 'status',
+        )
+
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        if not instance.is_valid():
+            raise serializers.ValidationError()

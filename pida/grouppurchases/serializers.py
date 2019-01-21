@@ -10,6 +10,15 @@ class GroupPurchaseOrderSerializer(serializers.ModelSerializer):
             'event', 'quantity', 'order_time', \
               'status',
         )
+        read_only_fields = (
+            'order_time', \
+              'status',
+        )
+
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        if not instance.is_valid():
+            raise serializers.ValidationError()
 
 
 class _GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):

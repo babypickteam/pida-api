@@ -21,6 +21,10 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
             'order_time', 'price', \
               'status',
         )
+        read_only_fields = (
+            'order_time', 'price', \
+              'status',
+        )
 
     def create(self, validated_data):
         items_data = validated_data.pop('items')
@@ -28,3 +32,8 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
         for d in items_data:
             PurchaseItem.objects.create(order=instance, **d)
         return instance
+
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        if not instance.is_valid():
+            raise serializers.ValidationError()
