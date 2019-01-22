@@ -21,6 +21,9 @@ class UserDetail(generics.RetrieveUpdateAPIView):
     permission_classes = (IsSelf,)
     lookup_field = 'username'
 
+    def perform_update(self, serializer):
+        serializer.save(password=self.request.data['password'])
+
 
 class PaymentInformationDetail(generics.RetrieveUpdateAPIView):
     queryset = PaymentInformation.objects.all()
