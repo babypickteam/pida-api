@@ -15,24 +15,6 @@ class UserSerializer(serializers.ModelSerializer):
         )
 
 
-class SkinConcernSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SkinConcern
-        fields = (
-            'id',
-            'name',
-        )
-
-
-class AllergySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Allergy
-        fields = (
-            'id',
-            'name',
-        )
-
-
 class PaymentInformationSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaymentInformation
