@@ -7,6 +7,14 @@ from .permissions import IsSelf
 from .serializers import UserSerializer, PaymentInformationSerializer, DeliveryInformationSerializer
 
 
+class UserList(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(password=self.request.data['password'])
+
+
 class UserDetail(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
