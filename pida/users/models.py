@@ -32,9 +32,13 @@ class User(AbstractUser):
                                        blank=True,
                                        related_name='+')
     default_payment_information = models.OneToOneField('PaymentInformation',
+                                                       blank=True,
+                                                       null=True,
                                                        on_delete=models.PROTECT,
                                                        related_name='+')
     default_delivery_information = models.OneToOneField('DeliveryInformation',
+                                                        blank=True,
+                                                        null=True,
                                                         on_delete=models.PROTECT,
                                                         related_name='+')
 
