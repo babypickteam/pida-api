@@ -26,8 +26,10 @@ class User(AbstractUser):
     age = models.PositiveSmallIntegerField(choices=AGE_CHOICES)
     skin_type = models.PositiveSmallIntegerField(choices=SKIN_TYPE_CHOICES)
     skin_concerns = models.ManyToManyField('SkinConcern',
+                                           blank=True,
                                            related_name='+')
     allergies = models.ManyToManyField('Allergy',
+                                       blank=True,
                                        related_name='+')
     default_payment_information = models.OneToOneField('PaymentInformation',
                                                        on_delete=models.PROTECT,
