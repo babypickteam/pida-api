@@ -8,7 +8,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'gender', 'age', 'skin_type', 'skin_concerns', \
-              'allergies',
+              'allergies', 'default_payment_information', 'default_delivery_information'
+        )
+        read_only_fields = (
+            'default_payment_information', 'default_delivery_information'
         )
 
 
