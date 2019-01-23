@@ -3,11 +3,13 @@ from .models import User, SkinConcern, Allergy, PaymentInformation, DeliveryInfo
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    password = serializers.CharField(write_only=True)
+
     class Meta:
         model = User
         fields = (
             'id',
-            'username', 'gender', 'age', 'skin_type', 'skin_concerns', \
+            'username', 'password', 'gender', 'age', 'skin_type', 'skin_concerns', \
               'allergies', 'default_payment_information', 'default_delivery_information'
         )
         read_only_fields = (
@@ -18,7 +20,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return User.objects.create_user(**validated_data)
 
     def save(self, **kwargs):
-        password = kwargs.pop('password', None)
+        password = self.validated_data.get('password', None)
         super().save(**kwargs)
         if password is not None:
             self.instance.set_password(password)

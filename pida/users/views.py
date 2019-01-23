@@ -11,18 +11,12 @@ class UserList(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(password=self.request.data['password'])
-
 
 class UserDetail(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsSelf,)
     lookup_field = 'username'
-
-    def perform_update(self, serializer):
-        serializer.save(password=self.request.data['password'])
 
 
 class PaymentInformationDetail(generics.RetrieveUpdateAPIView):
