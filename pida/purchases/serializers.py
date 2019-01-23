@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import PurchaseOrder, PurchaseItem
 
 
-class _PurchaseItemSerializer(serializers.ModelSerializer):
+class _PurchaseItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PurchaseItem
         fields = (
@@ -10,7 +10,7 @@ class _PurchaseItemSerializer(serializers.ModelSerializer):
         )
 
 
-class PurchaseOrderSerializer(serializers.ModelSerializer):
+class PurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
     items = _PurchaseItemSerializer(many=True, read_only=False)
 
     class Meta:

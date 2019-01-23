@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Product, Company, Category
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
         fields = (
@@ -13,7 +13,7 @@ class ProductSerializer(serializers.ModelSerializer):
         )
 
 
-class CompanySerializer(serializers.ModelSerializer):
+class CompanySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Company
         fields = (
@@ -23,7 +23,7 @@ class CompanySerializer(serializers.ModelSerializer):
         )
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
         fields = (

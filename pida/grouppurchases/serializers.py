@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import GroupPurchaseOrder, GroupPurchaseEvent, GroupPurchaseDiscountRate
 
 
-class GroupPurchaseOrderSerializer(serializers.ModelSerializer):
+class GroupPurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GroupPurchaseOrder
         fields = (
@@ -21,7 +21,7 @@ class GroupPurchaseOrderSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError()
 
 
-class _GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):
+class _GroupPurchaseDiscountRateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GroupPurchaseDiscountRate
         fields = (
@@ -29,7 +29,7 @@ class _GroupPurchaseDiscountRateSerializer(serializers.ModelSerializer):
         )
 
 
-class GroupPurchaseEventSerializer(serializers.ModelSerializer):
+class GroupPurchaseEventSerializer(serializers.HyperlinkedModelSerializer):
     discount_rates = _GroupPurchaseDiscountRateSerializer(many=True, read_only=True)
 
     class Meta:

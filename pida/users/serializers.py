@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import User, SkinConcern, Allergy, PaymentInformation, DeliveryInformation
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = (
@@ -26,7 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
         return self.instance
 
 
-class PaymentInformationSerializer(serializers.ModelSerializer):
+class PaymentInformationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PaymentInformation
         fields = (
@@ -39,7 +39,7 @@ class PaymentInformationSerializer(serializers.ModelSerializer):
         )
 
 
-class DeliveryInformationSerializer(serializers.ModelSerializer):
+class DeliveryInformationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DeliveryInformation
         fields = (
