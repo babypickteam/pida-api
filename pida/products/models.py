@@ -14,6 +14,7 @@ class Product(models.Model):
     info_manufacturer = models.TextField(max_length=100)
     info_country = models.TextField(max_length=40)
     info_url = models.TextField(max_length=200)
+    image = models.ImageField()
 
 
 class Company(models.Model):
