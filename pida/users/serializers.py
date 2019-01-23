@@ -46,6 +46,9 @@ class PaymentInformationSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = (
             'owner',
         )
+        extra_kwargs = {
+            'owner': {'lookup_field': 'username'},
+        }
 
 
 class DeliveryInformationSerializer(serializers.HyperlinkedModelSerializer):
@@ -59,3 +62,6 @@ class DeliveryInformationSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = (
             'owner',
         )
+        extra_kwargs = {
+            'owner': {'lookup_field': 'username'},
+        }
