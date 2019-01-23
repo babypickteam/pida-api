@@ -3,22 +3,28 @@ from .models import User, SkinConcern, Allergy, PaymentInformation, DeliveryInfo
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    password = serializers.CharField(write_only=True)
+    skin_concerns = serializers.SlugRelatedField(many=True, queryset=SkinConcern.objects.all(), slug_field='id')
+    allergies = serializers.SlugRelatedField(many=True, queryset=Allergy.objects.all(), slug_field='id')
+
     class Meta:
         model = User
         fields = (
             'id',
-            'username', 'gender', 'age', 'skin_type', 'skin_concerns', \
-              'allergies', 'default_payment_information', 'default_delivery_information'
+            'username', 'password', 'gender', 'age', 'skin_type', 'skin_concerns', \
+              'allergies', 'default_payment_information', 'default_delivery_information', \
+              'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
         read_only_fields = (
-            'default_payment_information', 'default_delivery_information'
+            'default_payment_information', 'default_delivery_information', \
+              'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
     def save(self, **kwargs):
-        password = kwargs.pop('password', None)
+        password = self.validated_data.get('password', None)
         super().save(**kwargs)
         if password is not None:
             self.instance.set_password(password)
