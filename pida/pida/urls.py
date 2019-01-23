@@ -18,9 +18,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from common.views import api_root
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('', api_root),
     path('', include('users.urls')),
     path('', include('products.urls')),
     path('', include('testers.urls')),
