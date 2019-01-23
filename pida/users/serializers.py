@@ -7,27 +7,23 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id',
-            'gender', 'age', 'skin_type', 'skin_concerns', \
-              'allergies',
+            'username', 'gender', 'age', 'skin_type', 'skin_concerns', \
+              'allergies', 'default_payment_information', 'default_delivery_information'
+        )
+        read_only_fields = (
+            'default_payment_information', 'default_delivery_information'
         )
 
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
 
-class SkinConcernSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SkinConcern
-        fields = (
-            'id',
-            'name',
-        )
-
-
-class AllergySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Allergy
-        fields = (
-            'id',
-            'name',
-        )
+    def save(self, **kwargs):
+        password = kwargs.pop('password', None)
+        super().save(**kwargs)
+        if password is not None:
+            self.instance.set_password(password)
+            self.instance.save()
+        return self.instance
 
 
 class PaymentInformationSerializer(serializers.ModelSerializer):
