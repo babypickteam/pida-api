@@ -12,10 +12,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'id',
             'username', 'password', 'gender', 'age', 'skin_type', 'skin_concerns', \
-              'allergies', 'default_payment_information', 'default_delivery_information'
+              'allergies', 'default_payment_information', 'default_delivery_information', \
+              'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
         read_only_fields = (
-            'default_payment_information', 'default_delivery_information'
+            'default_payment_information', 'default_delivery_information', \
+              'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
 
     def create(self, validated_data):
