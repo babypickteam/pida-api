@@ -6,10 +6,10 @@ from . import views
 urlpatterns = [
     path('purchase-orders/',
          views.PurchaseOrderList.as_view(),
-         name='purchase-order-list'),
+         name='purchaseorder-list'),
     path('purchase-orders/<int:pk>/',
          views.PurchaseOrderDetail.as_view(),
-         name='purchase-order-detail'),
+         name='purchaseorder-detail'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

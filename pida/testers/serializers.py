@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import TesterOrder
 
 
-class TesterOrderSerializer(serializers.ModelSerializer):
+class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TesterOrder
         fields = (
