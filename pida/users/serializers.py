@@ -10,7 +10,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id',
+            'url', 'id',
             'username', 'password', 'gender', 'age', 'skin_type', 'skin_concerns', \
               'allergies', 'default_payment_information', 'default_delivery_information', \
               'tester_orders', 'purchase_orders', 'group_purchase_orders',
@@ -19,6 +19,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'default_payment_information', 'default_delivery_information', \
               'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
+        extra_kwargs = {
+            'url': {'lookup_field': 'username'},
+        }
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -36,7 +39,7 @@ class PaymentInformationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PaymentInformation
         fields = (
-            'id',
+            'url', 'id',
             'owner', 'issuer', 'card_number', 'expiration_date', \
               'cvc', 'password_hashed',
         )
@@ -49,7 +52,7 @@ class DeliveryInformationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DeliveryInformation
         fields = (
-            'id',
+            'url', 'id',
             'owner', 'name', 'contact', 'postal_code', \
               'address_line_road', 'address_line_detail',
         )

@@ -6,7 +6,7 @@ class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TesterOrder
         fields = (
-            'id',
+            'url', 'id',
             'category', 'products', 'order_time', \
               'price', 'status',
         )
