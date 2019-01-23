@@ -18,13 +18,16 @@ class PurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url', 'id',
             'items',
-            'order_time', 'price', \
+            'owner', 'order_time', 'price', \
               'status',
         )
         read_only_fields = (
-            'order_time', 'price', \
+            'owner', 'order_time', 'price', \
               'status',
         )
+        extra_kwargs = {
+            'owner': {'lookup_field': 'username'},
+        }
 
     def create(self, validated_data):
         items_data = validated_data.pop('items')

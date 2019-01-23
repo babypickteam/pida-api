@@ -7,13 +7,16 @@ class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
         model = TesterOrder
         fields = (
             'url', 'id',
-            'category', 'products', 'order_time', \
+            'owner', 'category', 'products', 'order_time', \
               'price', 'status',
         )
         read_only_fields = (
-            'order_time', \
+            'owner', 'order_time', \
             'price', 'status',
         )
+        extra_kwargs = {
+            'owner': {'lookup_field': 'username'},
+        }
 
     def save(self, **kwargs):
         instance = super().save(**kwargs)

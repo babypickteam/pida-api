@@ -7,13 +7,16 @@ class GroupPurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
         model = GroupPurchaseOrder
         fields = (
             'url', 'id',
-            'event', 'quantity', 'order_time', \
+            'owner', 'event', 'quantity', 'order_time', \
               'status',
         )
         read_only_fields = (
-            'order_time', \
+            'owner', 'order_time', \
               'status',
         )
+        extra_kwargs = {
+            'owner': {'lookup_field': 'username'},
+        }
 
     def save(self, **kwargs):
         instance = super().save(**kwargs)
