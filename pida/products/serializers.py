@@ -6,7 +6,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
         fields = (
-            'id',
+            'url', 'id',
             'name', 'price', 'company', 'category', \
               'info_seller', 'info_manufacturer', 'info_country', 'info_url', \
               'image',
@@ -17,7 +17,7 @@ class CompanySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Company
         fields = (
-            'id',
+            'url', 'id',
             'products',
             'name',
         )
@@ -27,7 +27,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
         fields = (
-            'id',
+            'url', 'id',
             'products',
             'name', 'big_name',
         )

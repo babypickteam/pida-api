@@ -16,7 +16,7 @@ class PurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PurchaseOrder
         fields = (
-            'id',
+            'url', 'id',
             'items',
             'order_time', 'price', \
               'status',

@@ -6,7 +6,7 @@ class GroupPurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GroupPurchaseOrder
         fields = (
-            'id',
+            'url', 'id',
             'event', 'quantity', 'order_time', \
               'status',
         )
@@ -35,7 +35,7 @@ class GroupPurchaseEventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GroupPurchaseEvent
         fields = (
-            'id',
+            'url', 'id',
             'orders', 'discount_rates',
             'product', 'closing_time',
         )
