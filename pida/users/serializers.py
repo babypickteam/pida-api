@@ -4,6 +4,8 @@ from .models import User, SkinConcern, Allergy, PaymentInformation, DeliveryInfo
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(write_only=True)
+    skin_concerns = serializers.SlugRelatedField(many=True, queryset=SkinConcern.objects.all(), slug_field='id')
+    allergies = serializers.SlugRelatedField(many=True, queryset=Allergy.objects.all(), slug_field='id')
 
     class Meta:
         model = User
