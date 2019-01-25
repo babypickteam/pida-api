@@ -4,9 +4,9 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField(max_length=60)
     price = models.PositiveIntegerField()
-    company = models.ForeignKey('Company',
-                                on_delete=models.PROTECT,
-                                related_name='products')
+    brand = models.ForeignKey('Brand',
+                              on_delete=models.PROTECT,
+                              related_name='products')
     category = models.ForeignKey('Category',
                                  on_delete=models.PROTECT,
                                  related_name='products')
@@ -17,7 +17,7 @@ class Product(models.Model):
     image = models.ImageField()
 
 
-class Company(models.Model):
+class Brand(models.Model):
     name = models.CharField(max_length=40)
 
 
