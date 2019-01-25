@@ -141,3 +141,9 @@ REST_FRAMEWORK = {
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ),
 }
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
