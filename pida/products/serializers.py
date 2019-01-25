@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Company, Category
+from .models import Product, Brand, Category
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
@@ -7,15 +7,15 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         model = Product
         fields = (
             'url', 'id',
-            'name', 'price', 'company', 'category', \
+            'name', 'capacity', 'price', 'brand', 'category', \
               'info_seller', 'info_manufacturer', 'info_country', 'info_url', \
               'image',
         )
 
 
-class CompanySerializer(serializers.HyperlinkedModelSerializer):
+class BrandSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Company
+        model = Brand
         fields = (
             'url', 'id',
             'products',

@@ -33,6 +33,9 @@ class PurchaseOrder(models.Model):
                and self.price == sum(i.product.price*i.quantity for i in self.items.all()) \
                and all(i.quantity>0 for i in self.items.all())
 
+    def __str__(self):
+        return ' '.join([super().__str__(), self.order_time])
+
 
 class PurchaseItem(models.Model):
     order = models.ForeignKey('PurchaseOrder',
@@ -45,3 +48,6 @@ class PurchaseItem(models.Model):
 
     class Meta:
         unique_together = (('order', 'product'),)
+
+    def __str__(self):
+        return ' '.join([super().__str__(), self.product.name, self.quantity])

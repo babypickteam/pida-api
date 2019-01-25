@@ -35,3 +35,6 @@ class TesterOrder(models.Model):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
                and self.products.count() == 3 \
                and all(p.category==self.category for p in self.products.all())
+
+    def __str__(self):
+        return ' '.join([super().__str__(), self.order_time])
