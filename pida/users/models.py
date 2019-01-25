@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.conf import settings
+
 from django.contrib.auth.models import AbstractUser
 
 
@@ -52,7 +54,7 @@ class Allergy(models.Model):
 
 
 class PaymentInformation(models.Model):
-    owner = models.ForeignKey('User',
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
                               related_name='+')
     issuer = models.CharField(max_length=20)
@@ -63,7 +65,7 @@ class PaymentInformation(models.Model):
 
 
 class DeliveryInformation(models.Model):
-    owner = models.ForeignKey('User',
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE,
                               related_name='+')
     name = models.CharField(max_length=20)
