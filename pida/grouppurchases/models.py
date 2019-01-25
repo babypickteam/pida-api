@@ -34,12 +34,18 @@ class GroupPurchaseOrder(models.Model):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
                and self.quantity > 0
 
+    def __str__(self):
+        return ' '.join([super().__str__(), self.order_time])
+
 
 class GroupPurchaseEvent(models.Model):
     product = models.ForeignKey(Product,
                                 on_delete=models.PROTECT,
                                 related_name='+')
     closing_time = models.DateTimeField()
+
+    def __str__(self):
+        return ' '.join([super().__str__(), self.product, self.closing_time])
 
 
 class GroupPurchaseDiscountRate(models.Model):
@@ -48,3 +54,6 @@ class GroupPurchaseDiscountRate(models.Model):
                               related_name='discount_rates')
     quantity = models.PositiveSmallIntegerField()
     rate = models.FloatField()
+
+    def __str__(self):
+        return ' '.join([super().__str__(), self.quantity, self.rate])

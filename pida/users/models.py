@@ -42,13 +42,22 @@ class User(AbstractUser):
                                                         on_delete=models.PROTECT,
                                                         related_name='+')
 
+    def __str__(self):
+        return ' '.join([super().__str__(), self.username])
+
 
 class SkinConcern(models.Model):
     name = models.CharField(max_length=20)
 
+    def __str__(self):
+        return ' '.join([super().__str__(), self.name])
+
 
 class Allergy(models.Model):
     name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return ' '.join([super().__str__(), self.name])
 
 
 class PaymentInformation(models.Model):
@@ -61,6 +70,9 @@ class PaymentInformation(models.Model):
     cvc = models.CharField(max_length=3)
     password_hashed = models.CharField(max_length=255)
 
+    def __str__(self):
+        return ' '.join([super().__str__(), self.issuer, self.card_number])
+
 
 class DeliveryInformation(models.Model):
     owner = models.ForeignKey('User',
@@ -71,3 +83,6 @@ class DeliveryInformation(models.Model):
     postal_code = models.CharField(max_length=5)
     address_line_road = models.CharField(max_length=40)
     address_line_detail = models.CharField(max_length=40)
+
+    def __str__(self):
+        return ' '.join([super().__str__(), self.adress_line_road, self.address_line_detail])
