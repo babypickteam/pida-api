@@ -7,7 +7,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         model = Product
         fields = (
             'url', 'id',
-            'name', 'price', 'brand', 'category', \
+            'name', 'capacity', 'price', 'brand', 'category', \
               'info_seller', 'info_manufacturer', 'info_country', 'info_url', \
               'image',
         )

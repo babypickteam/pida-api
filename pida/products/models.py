@@ -3,6 +3,7 @@ from django.db import models
 
 class Product(models.Model):
     name = models.CharField(max_length=60)
+    capacity = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
     brand = models.ForeignKey('Brand',
                               on_delete=models.PROTECT,
