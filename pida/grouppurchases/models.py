@@ -32,6 +32,8 @@ class GroupPurchaseOrder(models.Model):
 
     def is_valid(self):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
+               and self.payment_information.valid \
+               and self.delivery_information.valid \
                and self.quantity > 0
 
     def __str__(self):

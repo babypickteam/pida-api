@@ -33,6 +33,8 @@ class TesterOrder(models.Model):
 
     def is_valid(self):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
+               and self.payment_information.valid \
+               and self.delivery_information.valid \
                and self.products.count() == 3 \
                and all(p.category==self.category for p in self.products.all())
 
