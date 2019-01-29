@@ -39,4 +39,6 @@ class PurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
     def save(self, **kwargs):
         instance = super().save(**kwargs)
         if not instance.is_valid():
+            instance.items.all().delete()
+            instance.delete()
             raise serializers.ValidationError()
