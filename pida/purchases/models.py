@@ -34,7 +34,7 @@ class PurchaseOrder(models.Model):
                and all(i.quantity>0 for i in self.items.all())
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.order_time])
+        return ' '.join([super().__str__(), str(self.order_time)])
 
 
 class PurchaseItem(models.Model):
@@ -50,4 +50,4 @@ class PurchaseItem(models.Model):
         unique_together = (('order', 'product'),)
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.product.name, self.quantity])
+        return ' '.join([super().__str__(), str(self.product.name), str(self.quantity)])

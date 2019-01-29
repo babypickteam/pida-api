@@ -37,4 +37,4 @@ class TesterOrder(models.Model):
                and all(p.category==self.category for p in self.products.all())
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.order_time])
+        return ' '.join([super().__str__(), str(self.order_time)])
