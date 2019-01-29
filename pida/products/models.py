@@ -16,6 +16,9 @@ class Product(models.Model):
     info_country = models.CharField(max_length=40)
     info_url = models.CharField(max_length=200)
     image = models.ImageField()
+    ingredients = models.ManyToManyField('Ingredient',
+                                         blank=True,
+                                         related_name='+')
 
     def __str__(self):
         return ' '.join([super().__str__(), self.name])
@@ -37,3 +40,11 @@ class Category(models.Model):
 
     def __str__(self):
         return ' '.join([super().__str__(), self.name, self.big_name])
+
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=20)
+    ewg_grade = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return ' '.join([super().__str__(), self.name])
