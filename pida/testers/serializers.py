@@ -21,4 +21,5 @@ class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
     def save(self, **kwargs):
         instance = super().save(**kwargs)
         if not instance.is_valid():
+            instance.delete()
             raise serializers.ValidationError()
