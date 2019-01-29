@@ -47,6 +47,9 @@ class User(AbstractUser):
 
 
 class SkinConcern(models.Model):
+    key = models.CharField(max_length=1,
+                           unique=True,
+                           null=True)
     name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -54,6 +57,9 @@ class SkinConcern(models.Model):
 
 
 class Allergy(models.Model):
+    key = models.CharField(max_length=1,
+                           unique=True,
+                           null=True)
     name = models.CharField(max_length=20)
 
     def __str__(self):
