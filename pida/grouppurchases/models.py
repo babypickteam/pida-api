@@ -35,7 +35,7 @@ class GroupPurchaseOrder(models.Model):
                and self.quantity > 0
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.order_time])
+        return ' '.join([super().__str__(), str(self.order_time)])
 
 
 class GroupPurchaseEvent(models.Model):
@@ -45,7 +45,7 @@ class GroupPurchaseEvent(models.Model):
     closing_time = models.DateTimeField()
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.product, self.closing_time])
+        return ' '.join([super().__str__(), str(self.product), str(self.closing_time)])
 
 
 class GroupPurchaseDiscountRate(models.Model):
@@ -56,4 +56,4 @@ class GroupPurchaseDiscountRate(models.Model):
     rate = models.FloatField()
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.quantity, self.rate])
+        return ' '.join([super().__str__(), str(self.quantity), str(self.rate)])
