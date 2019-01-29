@@ -38,7 +38,7 @@ class PaymentInformationSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url', 'id',
             'owner', 'issuer', 'card_number', 'expiration_date', \
-              'cvc', 'password_hashed',
+              'cvc', 'password_hashed', 'valid',
         )
         read_only_fields = (
             'owner',
@@ -54,7 +54,7 @@ class DeliveryInformationSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url', 'id',
             'owner', 'name', 'contact', 'postal_code', \
-              'address_line_road', 'address_line_detail',
+              'address_line_road', 'address_line_detail', 'valid',
         )
         read_only_fields = (
             'owner',

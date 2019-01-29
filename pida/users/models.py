@@ -75,6 +75,7 @@ class PaymentInformation(models.Model):
     expiration_date = models.CharField(max_length=5)
     cvc = models.CharField(max_length=3)
     password_hashed = models.CharField(max_length=255)
+    valid = models.BooleanField(default=False)
 
     def __str__(self):
         return ' '.join([super().__str__(), self.issuer, self.card_number])
@@ -89,6 +90,7 @@ class DeliveryInformation(models.Model):
     postal_code = models.CharField(max_length=5)
     address_line_road = models.CharField(max_length=40)
     address_line_detail = models.CharField(max_length=40)
+    valid = models.BooleanField(default=False)
 
     def __str__(self):
         return ' '.join([super().__str__(), self.adress_line_road, self.address_line_detail])
