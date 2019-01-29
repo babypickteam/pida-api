@@ -70,11 +70,17 @@ class PaymentInformation(models.Model):
     owner = models.ForeignKey('User',
                               on_delete=models.CASCADE,
                               related_name='+')
-    issuer = models.CharField(max_length=20)
-    card_number = models.CharField(max_length=19)
-    expiration_date = models.CharField(max_length=5)
-    cvc = models.CharField(max_length=3)
-    password_hashed = models.CharField(max_length=255)
+    issuer = models.CharField(max_length=20,
+                              blank=True)
+    card_number = models.CharField(max_length=19,
+                                   blank=True)
+    expiration_date = models.CharField(max_length=5,
+                                       blank=True)
+    cvc = models.CharField(max_length=3,
+                           blank=True)
+    password_hashed = models.CharField(max_length=255,
+                                       blank=True)
+    valid = models.BooleanField(default=False)
 
     def __str__(self):
         return ' '.join([super().__str__(), self.issuer, self.card_number])
@@ -84,11 +90,17 @@ class DeliveryInformation(models.Model):
     owner = models.ForeignKey('User',
                               on_delete=models.CASCADE,
                               related_name='+')
-    name = models.CharField(max_length=20)
-    contact = models.CharField(max_length=15)
-    postal_code = models.CharField(max_length=5)
-    address_line_road = models.CharField(max_length=40)
-    address_line_detail = models.CharField(max_length=40)
+    name = models.CharField(max_length=20,
+                            blank=True)
+    contact = models.CharField(max_length=15,
+                               blank=True)
+    postal_code = models.CharField(max_length=5,
+                                   blank=True)
+    address_line_road = models.CharField(max_length=40,
+                                         blank=True)
+    address_line_detail = models.CharField(max_length=40,
+                                           blank=True)
+    valid = models.BooleanField(default=False)
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.adress_line_road, self.address_line_detail])
+        return ' '.join([super().__str__(), self.address_line_road, self.address_line_detail])

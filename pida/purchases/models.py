@@ -29,6 +29,8 @@ class PurchaseOrder(models.Model):
 
     def is_valid(self):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
+               and self.payment_information.valid \
+               and self.delivery_information.valid \
                and self.items.count() > 0 \
                and self.price == sum(i.product.price*i.quantity for i in self.items.all()) \
                and all(i.quantity>0 for i in self.items.all())
