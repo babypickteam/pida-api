@@ -23,9 +23,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'url': {'lookup_field': 'username'},
         }
 
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
-
     def save(self, **kwargs):
         password = self.validated_data.get('password', None)
         super().save(**kwargs)
