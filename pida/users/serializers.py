@@ -4,8 +4,8 @@ from .models import User, SkinConcern, Allergy, PaymentInformation, DeliveryInfo
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(write_only=True)
-    skin_concerns = serializers.SlugRelatedField(many=True, queryset=SkinConcern.objects.all(), slug_field='id')
-    allergies = serializers.SlugRelatedField(many=True, queryset=Allergy.objects.all(), slug_field='id')
+    skin_concerns = serializers.SlugRelatedField(many=True, queryset=SkinConcern.objects.all(), slug_field='key')
+    allergies = serializers.SlugRelatedField(many=True, queryset=Allergy.objects.all(), slug_field='key')
 
     class Meta:
         model = User
@@ -22,9 +22,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {
             'url': {'lookup_field': 'username'},
         }
-
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
 
     def save(self, **kwargs):
         password = self.validated_data.get('password', None)
