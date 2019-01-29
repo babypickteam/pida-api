@@ -103,4 +103,4 @@ class DeliveryInformation(models.Model):
     valid = models.BooleanField(default=False)
 
     def __str__(self):
-        return ' '.join([super().__str__(), self.adress_line_road, self.address_line_detail])
+        return ' '.join([super().__str__(), self.address_line_road, self.address_line_detail])
