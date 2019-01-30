@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Notice, Faq
+
+
+admin.site.register(Notice)
+admin.site.register(Faq)
