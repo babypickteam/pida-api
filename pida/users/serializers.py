@@ -11,6 +11,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = (
             'url', 'id',
+            'reviews',
             'username', 'password', 'gender', 'age', 'skin_type', 'skin_concerns', \
               'allergies', 'default_payment_information', 'default_delivery_information', \
               'tester_orders', 'purchase_orders', 'group_purchase_orders',

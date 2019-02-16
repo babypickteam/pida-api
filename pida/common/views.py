@@ -13,6 +13,7 @@ def api_root(request, format=None):
         'brands': reverse('brand-list', request=request, format=format),
         'products': reverse('product-list', request=request, format=format),
         'categories': reverse('category-list', request=request, format=format),
+        'reviews': reverse('review-list', request=request, format=format),
         'group_purchase_events': reverse('grouppurchaseevent-list', request=request, format=format),
         'tester_orders': reverse('testerorder-list', request=request, format=format),
         'purchase_orders': reverse('purchaseorder-list', request=request, format=format),

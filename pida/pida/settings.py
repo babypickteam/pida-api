@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'managements.apps.ManagementsConfig',
     'products.apps.ProductsConfig',
+    'reviews.apps.ReviewsConfig',
     'testers.apps.TestersConfig',
     'purchases.apps.PurchasesConfig',
     'grouppurchases.apps.GrouppurchasesConfig',
