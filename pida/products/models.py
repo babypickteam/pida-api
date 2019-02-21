@@ -19,6 +19,7 @@ class Product(models.Model):
     ingredients = models.ManyToManyField('Ingredient',
                                          blank=True,
                                          related_name='+')
+    ocr_identifier = models.CharField(max_length=60)
 
     def __str__(self):
         return ' '.join([super().__str__(), self.name])
