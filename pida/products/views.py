@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Product, Brand, Category
 from .serializers import ProductSerializer, BrandSerializer, CategorySerializer
@@ -9,8 +10,9 @@ from .serializers import ProductSerializer, BrandSerializer, CategorySerializer
 class ProductList(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = (filters.SearchFilter,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
     search_fields = ('name', 'brand__name')
+    filter_fields = ('ocr_identifier',)
 
 
 class ProductDetail(generics.RetrieveAPIView):
