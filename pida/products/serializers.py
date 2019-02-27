@@ -2,6 +2,15 @@ from rest_framework import serializers
 from .models import Product, Brand, Category, Ingredient
 
 
+class _BrandSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Brand
+        fields = (
+            'url',
+            'name',
+        )
+
+
 class _IngredientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Ingredient
@@ -11,6 +20,7 @@ class _IngredientSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    brand = _BrandSerializer(read_only=True)
     ingredients = _IngredientSerializer(many=True, read_only=True)
     class Meta:
         model = Product
