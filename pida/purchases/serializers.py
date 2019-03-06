@@ -19,7 +19,7 @@ class PurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
             'url', 'id',
             'items',
             'owner', 'order_time', 'price', \
-              'status',
+              'status', 'payment_information', 'delivery_information',
         )
         read_only_fields = (
             'owner', 'order_time', 'price', \
