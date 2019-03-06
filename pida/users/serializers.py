@@ -55,7 +55,7 @@ class PaymentInformationSerializer(serializers.HyperlinkedModelSerializer):
               'cvc', 'password_hashed', 'valid',
         )
         read_only_fields = (
-            'owner',
+            'owner', 'valid',
         )
         extra_kwargs = {
             'owner': {'lookup_field': 'username'},
@@ -71,7 +71,7 @@ class DeliveryInformationSerializer(serializers.HyperlinkedModelSerializer):
               'address_line_road', 'address_line_detail', 'valid',
         )
         read_only_fields = (
-            'owner',
+            'owner', 'valid',
         )
         extra_kwargs = {
             'owner': {'lookup_field': 'username'},
