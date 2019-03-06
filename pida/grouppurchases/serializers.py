@@ -2,13 +2,22 @@ from rest_framework import serializers
 from .models import GroupPurchaseOrder, GroupPurchaseEvent, GroupPurchaseDiscountRate
 
 
+class _GroupPurchaseOrderSimpleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = GroupPurchaseOrder
+        fields = (
+            'url',
+            'order_time',
+        )
+
+
 class GroupPurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GroupPurchaseOrder
         fields = (
             'url', 'id',
             'owner', 'event', 'quantity', 'order_time', \
-              'status',
+              'status', 'payment_information', 'delivery_information',
         )
         read_only_fields = (
             'owner', 'order_time', \

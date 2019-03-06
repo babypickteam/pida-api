@@ -2,13 +2,22 @@ from rest_framework import serializers
 from .models import TesterOrder
 
 
+class _TesterOrderSimpleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TesterOrder
+        fields = (
+            'url',
+            'order_time',
+        )
+
+
 class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TesterOrder
         fields = (
             'url', 'id',
             'owner', 'category', 'products', 'order_time', \
-              'price', 'status',
+              'price', 'status', 'payment_information', 'delivery_information',
         )
         read_only_fields = (
             'owner', 'order_time', \

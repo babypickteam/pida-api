@@ -2,6 +2,15 @@ from rest_framework import serializers
 from .models import PurchaseOrder, PurchaseItem
 
 
+class _PurchaseOrderSimpleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PurchaseOrder
+        fields = (
+            'url',
+            'order_time',
+        )
+
+
 class _PurchaseItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PurchaseItem
@@ -19,7 +28,7 @@ class PurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
             'url', 'id',
             'items',
             'owner', 'order_time', 'price', \
-              'status',
+              'status', 'payment_information', 'delivery_information',
         )
         read_only_fields = (
             'owner', 'order_time', 'price', \

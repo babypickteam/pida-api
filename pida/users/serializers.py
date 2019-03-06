@@ -1,4 +1,7 @@
 from rest_framework import serializers
+from testers.serializers import _TesterOrderSimpleSerializer
+from purchases.serializers import _PurchaseOrderSimpleSerializer
+from grouppurchases.serializers import _GroupPurchaseOrderSimpleSerializer
 from .models import User, SkinConcern, Allergy, PaymentInformation, DeliveryInformation
 
 
@@ -6,6 +9,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(write_only=True)
     skin_concerns = serializers.SlugRelatedField(many=True, queryset=SkinConcern.objects.all(), slug_field='key')
     allergies = serializers.SlugRelatedField(many=True, queryset=Allergy.objects.all(), slug_field='key')
+    tester_orders = _TesterOrderSimpleSerializer(many=True, read_only=True)
+    purchase_orders = _PurchaseOrderSimpleSerializer(many=True, read_only=True)
+    group_purchase_orders = _GroupPurchaseOrderSimpleSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
@@ -17,7 +23,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
               'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
         read_only_fields = (
-            'default_payment_information', 'default_delivery_information', \
+            'reviews', 'default_payment_information', 'default_delivery_information', \
               'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
         extra_kwargs = {
@@ -49,7 +55,7 @@ class PaymentInformationSerializer(serializers.HyperlinkedModelSerializer):
               'cvc', 'password_hashed', 'valid',
         )
         read_only_fields = (
-            'owner',
+            'owner', 'valid',
         )
         extra_kwargs = {
             'owner': {'lookup_field': 'username'},
@@ -65,7 +71,7 @@ class DeliveryInformationSerializer(serializers.HyperlinkedModelSerializer):
               'address_line_road', 'address_line_detail', 'valid',
         )
         read_only_fields = (
-            'owner',
+            'owner', 'valid',
         )
         extra_kwargs = {
             'owner': {'lookup_field': 'username'},
