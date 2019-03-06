@@ -23,7 +23,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
               'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
         read_only_fields = (
-            'default_payment_information', 'default_delivery_information', \
+            'reviews', 'default_payment_information', 'default_delivery_information', \
               'tester_orders', 'purchase_orders', 'group_purchase_orders',
         )
         extra_kwargs = {
