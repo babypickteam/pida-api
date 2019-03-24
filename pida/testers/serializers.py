@@ -2,15 +2,6 @@ from rest_framework import serializers
 from .models import TesterOrder
 
 
-class _TesterOrderSimpleSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = TesterOrder
-        fields = (
-            'url',
-            'order_time',
-        )
-
-
 class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TesterOrder

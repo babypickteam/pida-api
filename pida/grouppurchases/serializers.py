@@ -2,15 +2,6 @@ from rest_framework import serializers
 from .models import GroupPurchaseOrder, GroupPurchaseEvent, GroupPurchaseDiscountRate
 
 
-class _GroupPurchaseOrderSimpleSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = GroupPurchaseOrder
-        fields = (
-            'url',
-            'order_time',
-        )
-
-
 class GroupPurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GroupPurchaseOrder

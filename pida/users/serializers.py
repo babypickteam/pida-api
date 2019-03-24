@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from testers.serializers import _TesterOrderSimpleSerializer
-from purchases.serializers import _PurchaseOrderSimpleSerializer
-from grouppurchases.serializers import _GroupPurchaseOrderSimpleSerializer
+from testers.serializers import TesterOrderSerializer
+from purchases.serializers import PurchaseOrderSerializer
+from grouppurchases.serializers import GroupPurchaseOrderSerializer
 from .models import User, SkinConcern, Allergy, PaymentInformation, DeliveryInformation
 
 
@@ -9,9 +9,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(write_only=True)
     skin_concerns = serializers.SlugRelatedField(many=True, queryset=SkinConcern.objects.all(), slug_field='key')
     allergies = serializers.SlugRelatedField(many=True, queryset=Allergy.objects.all(), slug_field='key')
-    tester_orders = _TesterOrderSimpleSerializer(many=True, read_only=True)
-    purchase_orders = _PurchaseOrderSimpleSerializer(many=True, read_only=True)
-    group_purchase_orders = _GroupPurchaseOrderSimpleSerializer(many=True, read_only=True)
+    tester_orders = TesterOrderSerializer(many=True, read_only=True)
+    purchase_orders = PurchaseOrderSerializer(many=True, read_only=True)
+    group_purchase_orders = GroupPurchaseOrderSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
