@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from products.serializers import _ProductSimpleSerializer
 from .models import GroupPurchaseOrder, GroupPurchaseEvent, GroupPurchaseDiscountRate
 
 
@@ -35,6 +36,7 @@ class _GroupPurchaseDiscountRateSerializer(serializers.HyperlinkedModelSerialize
 
 class GroupPurchaseEventSerializer(serializers.HyperlinkedModelSerializer):
     discount_rates = _GroupPurchaseDiscountRateSerializer(many=True, read_only=True)
+    product = _ProductSimpleSerializer(many=False, read_only=True)
 
     class Meta:
         model = GroupPurchaseEvent
