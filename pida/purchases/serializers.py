@@ -1,8 +1,11 @@
 from rest_framework import serializers
+from products.serializers import _ProductSimpleSerializer
 from .models import PurchaseOrder, PurchaseItem
 
 
 class _PurchaseItemSerializer(serializers.HyperlinkedModelSerializer):
+    product = _ProductSimpleSerializer(many=False, read_only=False)
+
     class Meta:
         model = PurchaseItem
         fields = (
