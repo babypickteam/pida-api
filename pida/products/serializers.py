@@ -20,8 +20,6 @@ class _IngredientSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class _ProductSimpleSerializer(serializers.HyperlinkedModelSerializer):
-    brand = _BrandSerializer(read_only=True)
-    ingredients = _IngredientSerializer(many=True, read_only=True)
     class Meta:
         model = Product
         fields = (
