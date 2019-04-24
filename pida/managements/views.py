@@ -29,6 +29,8 @@ class FaqDetail(generics.RetrieveAPIView):
 class AgreementList(generics.ListAPIView):
     queryset = Agreement.objects.all()
     serializer_class = AgreementSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('visible',)
 
 
 class AgreementDetail(generics.RetrieveAPIView):
