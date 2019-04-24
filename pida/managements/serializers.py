@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Notice, Faq
+from .models import Notice, Faq, Agreement
 
 
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
@@ -17,4 +17,13 @@ class FaqSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url', 'id',
             'title', 'content', 'written_time'
+        )
+
+
+class AgreementSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Agreement
+        fields = (
+            'url', 'id',
+            'title', 'content', 'written_time', 'visible'
         )
