@@ -25,7 +25,7 @@ class _ProductSimpleSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'url', 'id',
             'reviews',
-            'name', 'image',
+            'name', 'image', 'temp_opening_discount',
         )
 
 
@@ -39,7 +39,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             'reviews',
             'name', 'capacity', 'price', 'brand', 'category', \
               'info_seller', 'info_manufacturer', 'info_country', 'info_url', \
-              'image', 'ingredients',
+              'image', 'ingredients', 'temp_opening_discount',
         )
 
 
