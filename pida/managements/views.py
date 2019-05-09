@@ -44,5 +44,5 @@ class AgreementPlain(views.APIView):
 
     def get(self, request, *args, **kwargs):
         agreements = Agreement.objects.filter(visible=True)
-        data = "\n\n".join(["%s\n%s"%(a.title, a.content) for a in agreements])
+        data = "\n\n\n\n".join(["<h3>%s</h3>%s"%(a.title, a.content) for a in agreements])
         return Response(data)
