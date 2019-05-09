@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, renderers, views
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Notice, Faq, Agreement
@@ -36,3 +37,12 @@ class AgreementList(generics.ListAPIView):
 class AgreementDetail(generics.RetrieveAPIView):
     queryset = Agreement.objects.all()
     serializer_class = AgreementSerializer
+
+
+class AgreementPlain(views.APIView):
+    renderer_classes = (renderers.StaticHTMLRenderer,)
+
+    def get(self, request, *args, **kwargs):
+        agreements = Agreement.objects.filter(visible=True)
+        data = "\n\n\n\n".join(["<h3>%s</h3>%s"%(a.title, a.content) for a in agreements])
+        return Response(data)
