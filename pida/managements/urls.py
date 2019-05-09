@@ -22,6 +22,9 @@ urlpatterns = [
     path('agreements/<int:pk>/',
          views.AgreementDetail.as_view(),
          name='agreement-detail'),
+    path('agreements/plain/',
+         views.AgreementPlain.as_view(),
+         name='agreement-plain'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
