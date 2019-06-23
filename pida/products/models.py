@@ -21,6 +21,7 @@ class Product(models.Model):
                                          related_name='+')
     ocr_identifier = models.CharField(max_length=60,
                                       blank=True)
+    selling = models.BooleanField()
     temp_opening_discount = models.PositiveIntegerField()
 
     def __str__(self):
