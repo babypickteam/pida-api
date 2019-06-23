@@ -39,7 +39,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             'reviews',
             'name', 'capacity', 'price', 'brand', 'category', \
               'info_seller', 'info_manufacturer', 'info_country', 'info_url', \
-              'image', 'ingredients', 'temp_opening_discount',
+              'image', 'ingredients', 'selling', 'temp_opening_discount',
         )
 
 

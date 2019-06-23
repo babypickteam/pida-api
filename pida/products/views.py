@@ -12,7 +12,7 @@ class ProductList(generics.ListAPIView):
     serializer_class = ProductSerializer
     filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
     search_fields = ('name', 'brand__name')
-    filter_fields = ('ocr_identifier',)
+    filter_fields = ('ocr_identifier', 'selling')
 
 
 class ProductDetail(generics.RetrieveAPIView):
