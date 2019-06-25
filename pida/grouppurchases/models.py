@@ -3,6 +3,7 @@ from django.conf import settings
 
 from users.models import PaymentInformation, DeliveryInformation
 from products.models import Product
+from common.functions import validate_receipt
 
 
 class GroupPurchaseOrder(models.Model):
@@ -20,6 +21,9 @@ class GroupPurchaseOrder(models.Model):
                               on_delete=models.PROTECT,
                               related_name='orders')
     quantity = models.PositiveSmallIntegerField()
+    receipt_id = models.CharField(max_length=30,
+                                  unique=True,
+                                  null=True)
     order_time = models.DateTimeField(auto_now_add=True)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=STATUS_CHOICES[0][0])
@@ -34,6 +38,7 @@ class GroupPurchaseOrder(models.Model):
         return self.status in [c[0] for c in self.STATUS_CHOICES] \
                and self.payment_information.valid \
                and self.delivery_information.valid \
+               and validate_receipt(self.receipt_id, self.event.product.price * self.quantity) \
                and self.quantity > 0
 
     def __str__(self):

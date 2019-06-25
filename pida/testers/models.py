@@ -3,6 +3,7 @@ from django.conf import settings
 
 from users.models import PaymentInformation, DeliveryInformation
 from products.models import Product, Category
+from common.functions import validate_receipt
 
 
 class TesterOrder(models.Model):
@@ -21,6 +22,9 @@ class TesterOrder(models.Model):
     products = models.ManyToManyField(Product,
                                       related_name='+')
     order_time = models.DateTimeField(auto_now_add=True)
+    receipt_id = models.CharField(max_length=30,
+                                  unique=True,
+                                  null=True)
     price = models.PositiveIntegerField()
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=STATUS_CHOICES[0][0])
@@ -36,6 +40,7 @@ class TesterOrder(models.Model):
                and self.payment_information.valid \
                and self.delivery_information.valid \
                and self.products.count() == 2 \
+               and validate_receipt(self.receipt_id, self.price) \
                and all(p.selling for p in self.products.all()) \
                and all(p.category==self.category for p in self.products.all())
 
