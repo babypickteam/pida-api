@@ -4,6 +4,7 @@ from django.conf import settings
 
 from users.models import PaymentInformation, DeliveryInformation
 from products.models import Product
+from common.functions import validate_receipt
 
 
 class PurchaseOrder(models.Model):
@@ -36,6 +37,7 @@ class PurchaseOrder(models.Model):
                and self.delivery_information.valid \
                and self.items.count() > 0 \
                and self.price == sum(i.product.price*i.quantity for i in self.items.all()) \
+               and validate_receipt(self.receipt_id, self.price) \
                and all(i.selling for i in self.items.all()) \
                and all(i.quantity>0 for i in self.items.all())
 

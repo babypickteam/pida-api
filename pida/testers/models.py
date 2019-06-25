@@ -3,6 +3,7 @@ from django.conf import settings
 
 from users.models import PaymentInformation, DeliveryInformation
 from products.models import Product, Category
+from common.functions import validate_receipt
 
 
 class TesterOrder(models.Model):
@@ -39,6 +40,7 @@ class TesterOrder(models.Model):
                and self.payment_information.valid \
                and self.delivery_information.valid \
                and self.products.count() == 2 \
+               and validate_receipt(self.receipt_id, self.price) \
                and all(p.selling for p in self.products.all()) \
                and all(p.category==self.category for p in self.products.all())
 
