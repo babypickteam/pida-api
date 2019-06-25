@@ -33,6 +33,7 @@ class PurchaseOrder(models.Model):
                and self.delivery_information.valid \
                and self.items.count() > 0 \
                and self.price == sum(i.product.price*i.quantity for i in self.items.all()) \
+               and all(i.selling for i in self.items.all()) \
                and all(i.quantity>0 for i in self.items.all())
 
     def __str__(self):
