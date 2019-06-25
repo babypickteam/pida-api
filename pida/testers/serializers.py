@@ -7,7 +7,7 @@ class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
         model = TesterOrder
         fields = (
             'url', 'id',
-            'owner', 'category', 'products', 'order_time', \
+            'owner', 'category', 'products', 'order_time', 'receipt_id', \
               'price', 'status', 'payment_information', 'delivery_information',
         )
         read_only_fields = (

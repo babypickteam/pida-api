@@ -17,6 +17,9 @@ class PurchaseOrder(models.Model):
                               on_delete=models.CASCADE,
                               related_name='purchase_orders')
     order_time = models.DateTimeField(auto_now_add=True)
+    receipt_id = models.CharField(max_length=30,
+                                  unique=True,
+                                  null=True)
     price = models.PositiveIntegerField()
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=STATUS_CHOICES[0][0])

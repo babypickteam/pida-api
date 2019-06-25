@@ -21,7 +21,7 @@ class GroupPurchaseOrderSerializer(serializers.HyperlinkedModelSerializer):
         model = GroupPurchaseOrder
         fields = (
             'url', 'id',
-            'owner', 'event', 'quantity', 'order_time', \
+            'owner', 'event', 'quantity', 'order_time', 'receipt_id', \
               'status', 'payment_information', 'delivery_information',
         )
         read_only_fields = (

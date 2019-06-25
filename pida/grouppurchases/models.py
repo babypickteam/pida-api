@@ -20,6 +20,9 @@ class GroupPurchaseOrder(models.Model):
                               on_delete=models.PROTECT,
                               related_name='orders')
     quantity = models.PositiveSmallIntegerField()
+    receipt_id = models.CharField(max_length=30,
+                                  unique=True,
+                                  null=True)
     order_time = models.DateTimeField(auto_now_add=True)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=STATUS_CHOICES[0][0])
