@@ -36,6 +36,7 @@ class TesterOrder(models.Model):
                and self.payment_information.valid \
                and self.delivery_information.valid \
                and self.products.count() == 2 \
+               and all(p.selling for p in self.products.all()) \
                and all(p.category==self.category for p in self.products.all())
 
     def __str__(self):
