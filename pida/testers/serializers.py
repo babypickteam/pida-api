@@ -12,7 +12,7 @@ class TesterOrderSerializer(serializers.HyperlinkedModelSerializer):
         )
         read_only_fields = (
             'owner', 'order_time', \
-            'price', 'status',
+            'price', 'status', 'status', 'payment_information', 'delivery_information',
         )
         extra_kwargs = {
             'owner': {'lookup_field': 'username'},
